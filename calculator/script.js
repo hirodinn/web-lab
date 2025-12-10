@@ -1,6 +1,8 @@
 const display = document.getElementById("display");
 
 function append(value) {
+  if (display.innerText[display.innerText.length - 1] === "." && value === ".")
+    return;
   if (display.innerText === "0" && value !== ".") {
     display.innerText = value;
   } else {
@@ -23,4 +25,3 @@ function calculate() {
     display.innerText = "Error";
   }
 }
-

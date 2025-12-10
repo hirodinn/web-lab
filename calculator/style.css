@@ -5,6 +5,7 @@ body {
   align-items: center;
   height: 100vh;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 .calculator {
@@ -12,7 +13,7 @@ body {
   padding: 25px;
   border-radius: 30px;
   width: 300px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .display {
@@ -26,7 +27,7 @@ body {
   padding: 15px;
   font-size: 28px;
   color: #444;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
 .buttons {
@@ -41,7 +42,7 @@ body {
   padding: 18px;
   border-radius: 50%;
   font-size: 18px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: 0.2s;
 }
@@ -56,4 +57,3 @@ body {
   background: #e68ec6;
   color: white;
 }
-
