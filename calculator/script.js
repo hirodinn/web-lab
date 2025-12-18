@@ -1,7 +1,11 @@
 const display = document.getElementById("display");
-
+const operators = ["*", "+", "-", "/", "%"];
 function append(value) {
-  if (display.innerText[display.innerText.length - 1] === "." && value === ".")
+  const lastElement = display.innerText[display.innerText.length - 1];
+  if (
+    (lastElement === "." && value === ".") ||
+    (operators.includes(lastElement) && operators.includes(value))
+  )
     return;
   if (display.innerText === "0" && value !== ".") {
     display.innerText = value;
