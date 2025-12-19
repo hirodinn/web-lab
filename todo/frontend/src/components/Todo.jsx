@@ -15,8 +15,7 @@ export function Todo({ todo, setTodos, todos, setAddTodo, setInitialValues }) {
       }
     }
     loadCategoryColor();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [todo]);
 
   async function handleDelete() {
     try {

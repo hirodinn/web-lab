@@ -41,7 +41,6 @@ export default function Addtodo({
       description,
       category: cat,
       date,
-      completed: false,
     };
 
     const categoryExists = categories.some((c) => c.name.toLowerCase() === cat);
@@ -61,11 +60,12 @@ export default function Addtodo({
         `http://localhost:3001/todos/${initialValues.id}`,
         newTodo
       );
-      const temp = todos.filter((todo) => {
-        if (todo.id === initialValues.id) return res.data;
-        else return todo;
-      });
-      setTodos(temp);
+
+      const updatedTodos = todos.map((todo) =>
+        todo.id === initialValues.id ? res.data : todo
+      );
+
+      setTodos(updatedTodos);
     }
 
     // Reset form
