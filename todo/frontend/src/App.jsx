@@ -25,7 +25,7 @@ function App() {
       )}
       <div className="w-[90%] max-w-200 mx-auto min-h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3">
         <div
-          className="py-3 px-7 rounded-2xl bg-green-400 text-white"
+          className="py-3 px-7 rounded-2xl bg-green-400 text-white cursor-pointer"
           onClick={() => {
             setAddTodo(true);
           }}
