@@ -22,18 +22,21 @@ export function Todo({ todo }) {
     <div
       onMouseEnter={() => setShowDescription(true)}
       onMouseLeave={() => setShowDescription(false)}
-      className={`py-3.5 px-5 border-2`}
+      className="py-3.5 px-5 border-4 w-full"
       style={{ borderColor: color }}
     >
       <div className="flex gap-2 items-center">
-        <p className="flex-1 text-wrap">{todo.title}</p>
-        <div>
+        <p className="flex-1 text-wrap font-bold">{todo.title}</p>
+        <div className="flex gap-1">
           <button>edit</button>
           <button>delete</button>
         </div>
       </div>
       {showDescription && <div>{todo.description}</div>}
-      <div className="flex justify-end">{todo.date}</div>
+      <div className="flex justify-between">
+        <p>{todo.category}</p>
+        <p>{todo.date}</p>
+      </div>
     </div>
   );
 }

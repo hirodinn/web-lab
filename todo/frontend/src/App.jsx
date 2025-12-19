@@ -23,9 +23,11 @@ function App() {
         <div className="py-3 px-7 rounded-2xl bg-green-400 text-white">
           Add Todo
         </div>
-        {todos.map((todo, i) => {
-          return <Todo todo={todo} key={i} />;
-        })}
+        <div className="w-full flex flex-col gap-0.5">
+          {todos.map((todo, i) => {
+            return <Todo todo={todo} key={i} />;
+          })}
+        </div>
       </div>
     </div>
   );
