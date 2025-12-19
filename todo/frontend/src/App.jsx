@@ -34,7 +34,9 @@ function App() {
         </div>
         <div className="w-full flex flex-col gap-0.5">
           {todos.map((todo, i) => {
-            return <Todo todo={todo} key={i} />;
+            return (
+              <Todo todo={todo} key={i} setTodos={setTodos} todos={todos} />
+            );
           })}
         </div>
       </div>
