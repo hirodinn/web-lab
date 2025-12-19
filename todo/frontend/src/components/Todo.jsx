@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-export function Todo({ todo, setTodos, todos }) {
+import Addtodo from "./Addtodo";
+export function Todo({ todo, setTodos, todos, setAddTodo, setInitialValues }) {
   const [color, setColor] = useState("black");
   useEffect(() => {
     async function loadCategoryColor() {
@@ -28,7 +29,15 @@ export function Todo({ todo, setTodos, todos }) {
   }
 
   function handleEdit() {
-    console.log("edit clicked");
+    const initialValues = {
+      title: todo.title,
+      description: todo.description,
+      date: todo.date,
+      category: todo.category,
+      id: todo.id,
+    };
+    setInitialValues(initialValues);
+    setAddTodo(true);
   }
 
   const [showDescription, setShowDescription] = useState(false);

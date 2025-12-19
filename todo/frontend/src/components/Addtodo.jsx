@@ -4,13 +4,21 @@ import axios from "axios";
 const API_TODOS = "http://localhost:3001/todos";
 const API_CATEGORIES = "http://localhost:3001/categories";
 
-export default function Addtodo({ setAddTodo, setTodos, todos }) {
+export default function Addtodo({
+  setAddTodo,
+  setTodos,
+  todos,
+  initialValues,
+  setInitialValues,
+}) {
   const formRef = useRef();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState(initialValues?.title || "");
+  const [description, setDescription] = useState(
+    initialValues?.description || ""
+  );
+  const [date, setDate] = useState(initialValues?.date || "");
+  const [category, setCategory] = useState(initialValues?.category || "");
   const [categories, setCategories] = useState([]);
 
   // Load categories from JSON Server
@@ -45,9 +53,20 @@ export default function Addtodo({ setAddTodo, setTodos, todos }) {
       // Add new category to state so we can reuse it immediately
       setCategories([...categories, res.data]);
     }
-
-    const res = await axios.post(API_TODOS, newTodo);
-    setTodos([...todos, res.data]); // Update parent state
+    if (!initialValues) {
+      const res = await axios.post(API_TODOS, newTodo);
+      setTodos([...todos, res.data]); // Update parent state
+    } else {
+      const res = await axios.put(
+        `http://localhost:3001/todos/${initialValues.id}`,
+        newTodo
+      );
+      const temp = todos.filter((todo) => {
+        if (todo.id === initialValues.id) return res.data;
+        else return todo;
+      });
+      setTodos(temp);
+    }
 
     // Reset form
     setTitle("");
@@ -55,11 +74,13 @@ export default function Addtodo({ setAddTodo, setTodos, todos }) {
     setCategory("");
     setDate("");
     setAddTodo(false);
+    setInitialValues(null);
   };
   // Close modal when clicking outside form
 
   function validateClick(e) {
     if (!formRef.current.contains(e.target)) {
+      setInitialValues(null);
       setAddTodo(false);
     }
   }
@@ -124,7 +145,10 @@ export default function Addtodo({ setAddTodo, setTodos, todos }) {
           <button
             type="button"
             className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-            onClick={() => setAddTodo(false)}
+            onClick={() => {
+              setInitialValues(null);
+              setAddTodo(false);
+            }}
           >
             Cancel
           </button>

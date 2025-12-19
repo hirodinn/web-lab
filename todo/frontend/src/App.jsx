@@ -6,6 +6,7 @@ import Addtodo from "./components/Addtodo";
 function App() {
   const [todos, setTodos] = useState([]);
   const [addTodo, setAddTodo] = useState(false);
+  const [initialValues, setInitialValues] = useState(null);
 
   useEffect(() => {
     async function loadTodos() {
@@ -21,7 +22,13 @@ function App() {
   return (
     <div className="min-h-screen box-border bg-custom">
       {addTodo && (
-        <Addtodo setTodos={setTodos} setAddTodo={setAddTodo} todos={todos} />
+        <Addtodo
+          setTodos={setTodos}
+          setAddTodo={setAddTodo}
+          todos={todos}
+          initialValues={initialValues}
+          setInitialValues={setInitialValues}
+        />
       )}
       <div className="w-[90%] max-w-200 mx-auto min-h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3">
         <div
@@ -35,7 +42,14 @@ function App() {
         <div className="w-full flex flex-col gap-0.5">
           {todos.map((todo, i) => {
             return (
-              <Todo todo={todo} key={i} setTodos={setTodos} todos={todos} />
+              <Todo
+                todo={todo}
+                key={i}
+                setTodos={setTodos}
+                todos={todos}
+                setAddTodo={setAddTodo}
+                setInitialValues={setInitialValues}
+              />
             );
           })}
         </div>

@@ -1,5 +1,14 @@
 {
-  "todos": [],
+  "todos": [
+    {
+      "title": "my first to do list",
+      "description": "this is my first to do list which I can use it later",
+      "category": "uncategorized",
+      "date": "2025-12-11",
+      "completed": false,
+      "id": "7a7a"
+    }
+  ],
   "categories": [
     {
       "id": "e3b0",
