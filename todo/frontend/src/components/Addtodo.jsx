@@ -85,9 +85,9 @@ export default function Addtodo({
     }
   }
   function getRandomBoldColor() {
-    const hue = Math.floor(Math.random() * 360); // any hue
-    const saturation = 80; // high saturation = bold
-    const lightness = 50; // medium brightness
+    const hue = Math.floor(Math.random() * 360); // full hue range
+    const saturation = Math.floor(Math.random() * 30) + 70; // 70–100% saturation
+    const lightness = Math.floor(Math.random() * 20) + 40; // 40–60% lightness
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 
