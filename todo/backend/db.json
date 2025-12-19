@@ -1,4 +1,10 @@
 {
   "todos": [],
-  "categorys": []
+  "categories": [
+    {
+      "id": "e3b0",
+      "name": "uncategorized",
+      "color": "black"
+    }
+  ]
 }
