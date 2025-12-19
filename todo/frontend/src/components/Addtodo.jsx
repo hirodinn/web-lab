@@ -23,12 +23,15 @@ export default function Addtodo({ setAddTodo, setTodos, todos }) {
     e.preventDefault();
     if (!title || !date) return;
 
-    const cat = category.trim().toLowerCase();
+    const cat =
+      category.trim().toLowerCase().length > 0
+        ? category.trim().toLowerCase()
+        : "uncategorized";
 
     const newTodo = {
       title,
       description,
-      category: cat.length > 0 ? cat : "uncategorized",
+      category: cat,
       date,
       completed: false,
     };
