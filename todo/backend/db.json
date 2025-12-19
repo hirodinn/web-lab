@@ -1,10 +1,24 @@
 {
-  "todos": [],
+  "todos": [
+    {
+      "id": "dc98",
+      "title": "Todo for the job application",
+      "description": "Dear Hiring Team at Riftronix,\n\nMy name is Hire Bikila, and I am excited to apply for the Junior AI and Software Development Intern position. I have a solid foundation in programming, particularly in Python and JavaScript, along with basic knowledge of AI and machine learning concepts. I have experience building projects that involve coding, debugging, and experimenting with algorithms, which has strengthened my problem-solving and analytical skills.\n\nI am highly motivated to learn and grow in a collaborative environment, and I am eager to contribute to Riftronix by assisting with software and AI development tasks, experimenting with AI tools, and supporting the team in creating effective solutions. My strong technical foundation, curiosity, and dedication make me confident that I can be a valuable addition to your team.\n\nThank you for considering my application. I look forward to the opportunity to contribute and learn at Riftronix.\n\nSincerely,\nHire Bikila",
+      "category": "job",
+      "date": "2025-12-22",
+      "completed": false
+    }
+  ],
   "categories": [
     {
       "id": "e3b0",
       "name": "uncategorized",
       "color": "black"
+    },
+    {
+      "id": "afa4",
+      "name": "job",
+      "color": "hsl(158, 80%, 50%)"
     }
   ]
 }

@@ -28,8 +28,12 @@ export function Todo({ todo }) {
       <div className="flex gap-2 items-center">
         <p className="flex-1 text-wrap font-bold">{todo.title}</p>
         <div className="flex gap-1">
-          <button>edit</button>
-          <button>delete</button>
+          <button className="cursor-pointer">
+            <i className="fas fa-edit"></i>
+          </button>
+          <button className="cursor-pointer">
+            <i className="fas fa-trash"></i>
+          </button>
         </div>
       </div>
       {showDescription && <div>{todo.description}</div>}
