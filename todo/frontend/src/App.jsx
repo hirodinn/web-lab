@@ -24,7 +24,7 @@ function App() {
           Add Todo
         </div>
         {todos.map((todo, i) => {
-          <Todo todo={todo} key={i} />;
+          return <Todo todo={todo} key={i} />;
         })}
       </div>
     </div>

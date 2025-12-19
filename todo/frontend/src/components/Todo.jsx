@@ -6,9 +6,10 @@ export function Todo({ todo }) {
     async function loadCategoryColor() {
       try {
         const res = await axios.get(
-          `http://localhost:3001/category/${todo.category}`
+          `http://localhost:3001/categories?name=${todo.category}`
         );
-        setColor(res.data.color);
+        console.log(res.data[0].color);
+        setColor(res.data[0].color);
       } catch (ex) {
         console.log(ex);
       }
@@ -21,7 +22,8 @@ export function Todo({ todo }) {
     <div
       onMouseEnter={() => setShowDescription(true)}
       onMouseLeave={() => setShowDescription(false)}
-      className={`py-3.5 px-5 border-2 border-${color}-700`}
+      className={`py-3.5 px-5 border-2`}
+      style={{ borderColor: color }}
     >
       <div className="flex gap-2 items-center">
         <p className="flex-1 text-wrap">{todo.title}</p>
