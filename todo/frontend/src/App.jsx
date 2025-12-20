@@ -38,7 +38,7 @@ function App() {
   }, []);
   return (
     <div
-      className={`min-h-screen box-border bg-custom ${
+      className={`h-screen box-border bg-custom ${
         dark && "dark"
       } text-(--text-color)`}
     >
@@ -46,7 +46,7 @@ function App() {
         <Theme />
       </div>
       {addTodo && <Addtodo />}
-      <div className="w-[90%] max-w-200 mx-auto min-h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3">
+      <div className="w-[90%] max-w-200 mx-auto h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3 overflow-hidden">
         <div className="w-full flex flex-wrap gap-3 justify-center">
           {categories.map((category, i) => {
             return (
@@ -60,7 +60,7 @@ function App() {
             );
           })}
         </div>
-        <div className="w-full flex flex-col gap-0.5">
+        <div className="w-full flex flex-col gap-0.5 overflow-y-scroll no-scrollbar">
           {todos.map((todo, i) => {
             return <Todo todo={todo} key={i} />;
           })}
