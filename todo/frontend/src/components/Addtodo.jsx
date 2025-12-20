@@ -44,6 +44,7 @@ export default function Addtodo() {
       description,
       category: cat,
       date,
+      completed: false,
     };
 
     const categoryExists = categories.some((c) => c.name.toLowerCase() === cat);

@@ -48,6 +48,28 @@ export function Todo({ todo }) {
     dispatch(setAddTodo(true));
   }
 
+  async function handleCompleted() {
+    try {
+      const newTodo = {
+        title: todo.title,
+        description: todo.description,
+        category: todo.category,
+        date: todo.category,
+        completed: !todo.completed,
+      };
+      const res = await axios.put(
+        `http://localhost:3001/todos/${todo.id}`,
+        newTodo
+      );
+
+      const updatedTodos = todos.map((t) => (t.id === todo.id ? res.data : t));
+
+      dispatch(setTodos(updatedTodos));
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
   const [showDescription, setShowDescription] = useState(false);
   return (
     <div
@@ -64,6 +86,14 @@ export function Todo({ todo }) {
           </button>
           <button className="cursor-pointer" onClick={handleDelete}>
             <i className="fas fa-trash"></i>
+          </button>
+          <button className="cursor-pointer" onClick={handleCompleted}>
+            <i
+              className="fas fa-check-double"
+              style={{
+                color: `${todo.completed ? "green" : "var(--text-color)"}`,
+              }}
+            ></i>
           </button>
         </div>
       </div>
