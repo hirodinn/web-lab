@@ -5,10 +5,12 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Todo } from "./components/Todo";
 import Addtodo from "./components/Addtodo";
+import { Theme } from "./components/Theme";
 
 function App() {
   const todos = useSelector((state) => state.todosInfo.todos);
   const addTodo = useSelector((state) => state.todosInfo.addtodo);
+  const dark = useSelector((state) => state.todosInfo.darkMode);
 
   const dispatch = useDispatch();
 
@@ -25,7 +27,10 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="min-h-screen box-border bg-custom">
+    <div className={`min-h-screen box-border bg-custom ${dark && "dark"}`}>
+      <div className="absolute top-2 left-2">
+        <Theme />
+      </div>
       {addTodo && <Addtodo />}
       <div className="w-[90%] max-w-200 mx-auto min-h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3">
         <div
