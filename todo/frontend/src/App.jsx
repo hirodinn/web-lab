@@ -11,6 +11,7 @@ function App() {
   const todos = useSelector((state) => state.todosInfo.todos);
   const addTodo = useSelector((state) => state.todosInfo.addtodo);
   const dark = useSelector((state) => state.todosInfo.darkMode);
+  const categories = useSelector((state) => state.todosInfo.categories);
 
   const dispatch = useDispatch();
 
@@ -53,6 +54,19 @@ function App() {
           }}
         >
           Add Todo
+        </div>
+        <div className="w-full flex flex-wrap gap-3 justify-center">
+          {categories.map((category, i) => {
+            return (
+              <div
+                className="py-3 px-6 border-2 rounded-lg "
+                style={{ borderColor: category.color }}
+                key={i}
+              >
+                {category.name}
+              </div>
+            );
+          })}
         </div>
         <div className="w-full flex flex-col gap-0.5">
           {todos.map((todo, i) => {
