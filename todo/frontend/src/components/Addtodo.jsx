@@ -1,9 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   setTodos,
   setAddTodo,
   setInitialValues,
+  setCategories,
 } from "../redux/todoInfoAction";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -22,12 +23,7 @@ export default function Addtodo() {
   );
   const [date, setDate] = useState(initialValues?.date || "");
   const [category, setCategory] = useState(initialValues?.category || "");
-  const [categories, setCategories] = useState([]);
-
-  // Load categories from JSON Server
-  useEffect(() => {
-    axios.get(API_CATEGORIES).then((res) => setCategories(res.data));
-  }, []);
+  const categories = useSelector((state) => state.todosInfo.categories);
 
   // Submit new todo
   const handleSubmit = async (e) => {
@@ -54,7 +50,7 @@ export default function Addtodo() {
         color: getRandomBoldColor(),
       });
       // Add new category to state so we can reuse it immediately
-      setCategories([...categories, res.data]);
+      dispatch(setCategories([...categories, res.data]));
     }
     if (!initialValues) {
       const res = await axios.post(API_TODOS, newTodo);

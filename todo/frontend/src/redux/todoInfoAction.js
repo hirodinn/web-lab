@@ -22,3 +22,9 @@ export function setAddTodo(val) {
     payload: val,
   };
 }
+export function setCategories(obj) {
+  return {
+    type: "SETCATEGORIES",
+    payload: obj,
+  };
+}

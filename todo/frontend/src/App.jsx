@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { setTodos, setAddTodo } from "./redux/todoInfoAction";
+import { setTodos, setAddTodo, setCategories } from "./redux/todoInfoAction";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Todo } from "./components/Todo";
@@ -23,7 +23,16 @@ function App() {
         console.log(ex);
       }
     }
+    async function loadCategories() {
+      try {
+        const res = await axios.get("http://localhost:3001/categories");
+        dispatch(setCategories(res.data));
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
     loadTodos();
+    loadCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
