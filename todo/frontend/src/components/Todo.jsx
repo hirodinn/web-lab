@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  setTodos,
+  setAddTodo,
+  setInitialValues,
+} from "../redux/todoInfoAction";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-import Addtodo from "./Addtodo";
-export function Todo({ todo, setTodos, todos, setAddTodo, setInitialValues }) {
+export function Todo({ todo }) {
+  const todos = useSelector((state) => state.todosInfo.todos);
+  const dispatch = useDispatch();
+
   const [color, setColor] = useState("black");
   useEffect(() => {
     async function loadCategoryColor() {
@@ -21,7 +30,7 @@ export function Todo({ todo, setTodos, todos, setAddTodo, setInitialValues }) {
     try {
       await axios.delete(`http://localhost:3001/todos/${todo.id}`);
       const temp = todos.filter((t) => t.id !== todo.id);
-      setTodos(temp);
+      dispatch(setTodos(temp));
     } catch (ex) {
       console.log(ex);
     }
@@ -35,8 +44,8 @@ export function Todo({ todo, setTodos, todos, setAddTodo, setInitialValues }) {
       category: todo.category,
       id: todo.id,
     };
-    setInitialValues(initialValues);
-    setAddTodo(true);
+    dispatch(setInitialValues(initialValues));
+    dispatch(setAddTodo(true));
   }
 
   const [showDescription, setShowDescription] = useState(false);

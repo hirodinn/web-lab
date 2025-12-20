@@ -1,18 +1,21 @@
 import { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import {
+  setTodos,
+  setAddTodo,
+  setInitialValues,
+} from "../redux/todoInfoAction";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 const API_TODOS = "http://localhost:3001/todos";
 const API_CATEGORIES = "http://localhost:3001/categories";
 
-export default function Addtodo({
-  setAddTodo,
-  setTodos,
-  todos,
-  initialValues,
-  setInitialValues,
-}) {
+export default function Addtodo() {
   const formRef = useRef();
-
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todosInfo.todos);
+  const initialValues = useSelector((state) => state.todosInfo.initialValues);
   const [title, setTitle] = useState(initialValues?.title || "");
   const [description, setDescription] = useState(
     initialValues?.description || ""
@@ -54,7 +57,7 @@ export default function Addtodo({
     }
     if (!initialValues) {
       const res = await axios.post(API_TODOS, newTodo);
-      setTodos([...todos, res.data]); // Update parent state
+      dispatch(setTodos([...todos, res.data])); // Update parent state
     } else {
       const res = await axios.put(
         `http://localhost:3001/todos/${initialValues.id}`,
@@ -65,7 +68,7 @@ export default function Addtodo({
         todo.id === initialValues.id ? res.data : todo
       );
 
-      setTodos(updatedTodos);
+      dispatch(setTodos(updatedTodos));
     }
 
     // Reset form
@@ -73,8 +76,8 @@ export default function Addtodo({
     setDescription("");
     setCategory("");
     setDate("");
-    setAddTodo(false);
-    setInitialValues(null);
+    dispatch(setAddTodo(false));
+    dispatch(setInitialValues(null));
   };
   // Close modal when clicking outside form
 
@@ -146,8 +149,8 @@ export default function Addtodo({
             type="button"
             className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
             onClick={() => {
-              setInitialValues(null);
-              setAddTodo(false);
+              dispatch(setInitialValues(null));
+              dispatch(setAddTodo(false));
             }}
           >
             Cancel
