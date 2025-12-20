@@ -54,7 +54,7 @@ export function Todo({ todo }) {
         title: todo.title,
         description: todo.description,
         category: todo.category,
-        date: todo.category,
+        date: todo.date,
         completed: !todo.completed,
       };
       const res = await axios.put(
