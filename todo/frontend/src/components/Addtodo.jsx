@@ -83,8 +83,8 @@ export default function Addtodo() {
 
   function validateClick(e) {
     if (!formRef.current.contains(e.target)) {
-      setInitialValues(null);
-      setAddTodo(false);
+      dispatch(setInitialValues(null));
+      dispatch(setAddTodo(false));
     }
   }
   function getRandomBoldColor() {
