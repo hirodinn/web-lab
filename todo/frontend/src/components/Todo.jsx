@@ -75,7 +75,7 @@ export function Todo({ todo }) {
     <div
       onMouseEnter={() => setShowDescription(true)}
       onMouseLeave={() => setShowDescription(false)}
-      className="py-3.5 px-5 border-4 w-full"
+      className="py-3.5 px-5 border-3 w-full rounded-lg"
       style={{ borderColor: color }}
     >
       <div className="flex gap-2 items-center">

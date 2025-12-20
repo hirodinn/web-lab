@@ -47,19 +47,11 @@ function App() {
       </div>
       {addTodo && <Addtodo />}
       <div className="w-[90%] max-w-200 mx-auto min-h-screen box-border pt-16 flex flex-col pb-6 items-center gap-3">
-        <div
-          className="py-3 px-7 rounded-2xl bg-green-400 text-white cursor-pointer"
-          onClick={() => {
-            dispatch(setAddTodo(true));
-          }}
-        >
-          Add Todo
-        </div>
         <div className="w-full flex flex-wrap gap-3 justify-center">
           {categories.map((category, i) => {
             return (
               <div
-                className="py-3 px-6 border-2 rounded-lg "
+                className="py-3 px-6 border-2 rounded-lg cursor-pointer hover:-translate-y-1"
                 style={{ borderColor: category.color }}
                 key={i}
               >
@@ -72,6 +64,27 @@ function App() {
           {todos.map((todo, i) => {
             return <Todo todo={todo} key={i} />;
           })}
+        </div>
+        <div
+          className="
+          ml-auto
+    flex items-center gap-2
+    bg-blue-600 text-white
+    px-5 py-3
+    rounded-2xl
+    shadow-lg
+    hover:bg-blue-700
+    hover:scale-102
+    active:scale-98
+    transition-all duration-200
+    cursor-pointer
+  "
+          onClick={() => {
+            dispatch(setAddTodo(true));
+          }}
+        >
+          <i className="fa-solid fa-plus"></i>
+          <span className="font-semibold">Add Todo</span>
         </div>
       </div>
     </div>
