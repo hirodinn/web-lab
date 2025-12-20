@@ -102,7 +102,7 @@ export default function Addtodo() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md"
+        className="bg-(--background-color) p-6 rounded-xl shadow-lg w-[90%] max-w-md"
       >
         <h2 className="text-xl font-bold mb-4">Add New Todo</h2>
 

@@ -27,7 +27,11 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className={`min-h-screen box-border bg-custom ${dark && "dark"}`}>
+    <div
+      className={`min-h-screen box-border bg-custom ${
+        dark && "dark"
+      } text-(--text-color)`}
+    >
       <div className="absolute top-2 left-2">
         <Theme />
       </div>
