@@ -18,6 +18,9 @@ function App() {
 
   const dispatch = useDispatch();
 
+  const API_TODOS = "http://localhost:3001/todos";
+  const API_CATEGORIES = "http://localhost:3001/categories";
+
   useEffect(() => {
     async function loadTodos() {
       try {
