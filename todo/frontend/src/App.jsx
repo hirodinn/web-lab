@@ -42,12 +42,13 @@ function App() {
   useEffect(() => {
     if (selectedCategories.length === 0) setSelectedTodos(todos);
     else {
-      setSelectedTodos(
-        todos.flter((todo) => selectedTodos.includes(todo.name))
+      const temp = todos.filter((todo) =>
+        selectedCategories.includes(todo.category)
       );
+      setSelectedTodos(temp);
+      console.log("selected ", temp);
     }
     console.log(selectedCategories);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategories, todos]);
 
   function handleSelected(name) {
@@ -95,7 +96,7 @@ function App() {
           })}
         </div>
         <div className="w-full flex flex-col gap-0.5 overflow-y-scroll no-scrollbar">
-          {todos.map((todo, i) => {
+          {selectedTodos.map((todo, i) => {
             return <Todo todo={todo} key={i} />;
           })}
         </div>
