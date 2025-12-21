@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     async function loadTodos() {
       try {
-        const res = await axios.get("http://localhost:3001/todos");
+        const res = await axios.get(API_TODOS);
         dispatch(setTodos(res.data));
       } catch (ex) {
         console.log(ex);
@@ -32,7 +32,7 @@ function App() {
     }
     async function loadCategories() {
       try {
-        const res = await axios.get("http://localhost:3001/categories");
+        const res = await axios.get(API_CATEGORIES);
         dispatch(setCategories(res.data));
       } catch (ex) {
         console.log(ex);
