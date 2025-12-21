@@ -118,7 +118,7 @@ function App() {
             dispatch(setAddTodo(true));
           }}
         >
-          <i className="fa-solid fa-plus"></i>
+          <i className="fas fa-plus"></i>
           <span className="font-semibold">Add Todo</span>
         </div>
       </div>

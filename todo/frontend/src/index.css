@@ -29,7 +29,9 @@
   );
   transition: background 0.5s ease;
 }
+
 /* Hide scrollbar but keep scrolling */
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

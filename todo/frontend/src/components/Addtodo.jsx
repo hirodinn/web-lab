@@ -35,12 +35,14 @@ export default function Addtodo() {
         ? category.trim().toLowerCase()
         : "uncategorized";
 
+    const completed = initialValues.completed ? initialValues.completed : false;
+
     const newTodo = {
       title,
       description,
       category: cat,
       date,
-      completed: false,
+      completed,
     };
 
     const categoryExists = categories.some((c) => c.name.toLowerCase() === cat);

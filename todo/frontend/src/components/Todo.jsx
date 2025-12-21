@@ -43,6 +43,7 @@ export function Todo({ todo }) {
       date: todo.date,
       category: todo.category,
       id: todo.id,
+      completed: todo.completed,
     };
     dispatch(setInitialValues(initialValues));
     dispatch(setAddTodo(true));
