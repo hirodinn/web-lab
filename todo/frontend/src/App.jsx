@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { setTodos, setAddTodo, setCategories } from "./redux/todoInfoAction";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,8 @@ import { Theme } from "./components/Theme";
 
 function App() {
   const todos = useSelector((state) => state.todosInfo.todos);
+  const [selectedTodos, setSelectedTodos] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const addTodo = useSelector((state) => state.todosInfo.addtodo);
   const dark = useSelector((state) => state.todosInfo.darkMode);
   const categories = useSelector((state) => state.todosInfo.categories);
@@ -36,6 +38,30 @@ function App() {
     loadCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (selectedCategories.length === 0) setSelectedTodos(todos);
+    else {
+      setSelectedTodos(
+        todos.flter((todo) => selectedTodos.includes(todo.name))
+      );
+    }
+    console.log(selectedCategories);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategories, todos]);
+
+  function handleSelected(name) {
+    if (selectedCategories.includes(name)) {
+      setSelectedCategories(
+        selectedCategories.filter(
+          (selectedCategory) => selectedCategory != name
+        )
+      );
+    } else {
+      setSelectedCategories([...selectedCategories, name]);
+    }
+  }
+
   return (
     <div
       className={`h-screen box-border bg-custom ${
@@ -52,8 +78,16 @@ function App() {
             return (
               <div
                 className="py-3 px-6 border-2 rounded-lg cursor-pointer hover:-translate-y-1"
-                style={{ borderColor: category.color }}
+                style={{
+                  borderColor: category.color,
+                  backgroundColor: selectedCategories.includes(category.name)
+                    ? category.color
+                    : "transparent",
+                }}
                 key={i}
+                onClick={() => {
+                  handleSelected(category.name);
+                }}
               >
                 {category.name}
               </div>
