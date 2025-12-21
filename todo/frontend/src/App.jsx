@@ -11,6 +11,7 @@ function App() {
   const todos = useSelector((state) => state.todosInfo.todos);
   const [selectedTodos, setSelectedTodos] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [sorted, setSorted] = useState(false);
   const addTodo = useSelector((state) => state.todosInfo.addtodo);
   const dark = useSelector((state) => state.todosInfo.darkMode);
   const categories = useSelector((state) => state.todosInfo.categories);
@@ -40,16 +41,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedCategories.length === 0) setSelectedTodos(todos);
+    let temp;
+    if (selectedCategories.length === 0) temp = [...todos];
     else {
-      const temp = todos.filter((todo) =>
-        selectedCategories.includes(todo.category)
-      );
-      setSelectedTodos(temp);
-      console.log("selected ", temp);
+      temp = todos.filter((todo) => selectedCategories.includes(todo.category));
     }
-    console.log(selectedCategories);
-  }, [selectedCategories, todos]);
+    if (sorted) {
+      temp = temp.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+    console.log(temp);
+    setSelectedTodos(temp);
+  }, [selectedCategories, todos, sorted]);
 
   function handleSelected(name) {
     if (selectedCategories.includes(name)) {
@@ -100,9 +102,17 @@ function App() {
             return <Todo todo={todo} key={i} />;
           })}
         </div>
-        <div
-          className="
-          ml-auto
+        <div className="flex justify-between w-full">
+          <div
+            className="px-5 py-3 border-2 rounded-2xl cursor-pointer"
+            onClick={() => {
+              setSorted(!sorted);
+            }}
+          >
+            {sorted ? "Unsort" : "Sort By Date"}
+          </div>
+          <div
+            className="
     flex items-center gap-2
     bg-blue-600 text-white
     px-5 py-3
@@ -114,12 +124,13 @@ function App() {
     transition-all duration-200
     cursor-pointer
   "
-          onClick={() => {
-            dispatch(setAddTodo(true));
-          }}
-        >
-          <i className="fas fa-plus"></i>
-          <span className="font-semibold">Add Todo</span>
+            onClick={() => {
+              dispatch(setAddTodo(true));
+            }}
+          >
+            <i className="fas fa-plus"></i>
+            <span className="font-semibold">Add Todo</span>
+          </div>
         </div>
       </div>
     </div>
