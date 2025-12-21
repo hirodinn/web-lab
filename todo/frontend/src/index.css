@@ -1,25 +1,27 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-/* Light mode gradient */
 :root {
-  --gradient-start: oklch(70.7% 0.165 254.624); /* blue-400 */
-  --gradient-middle: oklch(80.9% 0.105 251.813); /* blue-300 */
-  --gradient-end: oklch(91.7% 0.08 205.041); /* cyan-200 */
-  --text-color: black;
-  --background-color: white;
+  /* Light mode – soft pastel gradient for contrast with bold random colors */
+  --gradient-start: oklch(93% 0.05 0); /* very light pink */
+  --gradient-middle: oklch(92% 0.06 120); /* mint green */
+  --gradient-end: oklch(91% 0.04 250); /* pastel lavender */
+
+  --text-color: hsl(220, 15%, 15%); /* dark slate for readability */
+  --background-color: hsl(50, 30%, 98%); /* off-white */
 }
 
-/* Dark mode gradient (example, can be any colors) */
+/* Dark mode – keep same as before (distinct from random colors) */
 .dark {
   --gradient-start: #1e293b; /* gray-800 */
   --gradient-middle: #334155; /* gray-700 */
   --gradient-end: #0f172a; /* gray-900 */
-  --text-color: white;
-  --background-color: #0f172a;
+
+  --text-color: hsl(210, 30%, 92%); /* off-white text */
+  --background-color: hsl(225, 30%, 10%); /* very dark blue */
 }
 
-/* Custom utility using the variables */
+/* Gradient background utility */
 .bg-custom {
   background: linear-gradient(
     to bottom right,
@@ -27,7 +29,8 @@
     var(--gradient-middle),
     var(--gradient-end)
   );
-  transition: background 0.5s ease;
+  color: var(--text-color);
+  transition: background 0.5s ease, color 0.3s ease;
 }
 
 /* Hide scrollbar but keep scrolling */
