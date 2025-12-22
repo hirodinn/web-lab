@@ -28,3 +28,6 @@ export function setCategories(obj) {
     payload: obj,
   };
 }
+export function setCurrentCategory(val) {
+  return { type: "SETCURRENTCATEGORY", payload: val };
+}

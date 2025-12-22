@@ -4,6 +4,7 @@ const initialValue = {
   darkMode: JSON.parse(localStorage.getItem("dark")) || false,
   addtodo: false,
   initialValues: null,
+  currentCategory: null,
 };
 export default function TodoReducer(state = initialValue, action) {
   if (action.type === "SETTODOS") {
@@ -26,6 +27,10 @@ export default function TodoReducer(state = initialValue, action) {
   } else if (action.type === "SETCATEGORIES") {
     const temp = { ...state };
     temp.categories = action.payload;
+    return temp;
+  } else if (action.type === "SETCURRENTCATEGORY") {
+    const temp = { ...state };
+    temp.currentCategory = action.payload;
     return temp;
   } else {
     return state;
