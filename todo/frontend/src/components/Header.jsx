@@ -8,7 +8,7 @@ import {
 export default function Header() {
   const dispatch = useDispatch();
   const dark = useSelector((s) => s.todosInfo.darkMode);
-
+  console.log(dark);
   return (
     <div className="flex justify-between items-center px-6 py-4">
       <h1 className="text-xl font-bold dark:text-white">Todo Board</h1>
