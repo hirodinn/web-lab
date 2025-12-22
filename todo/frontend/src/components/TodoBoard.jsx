@@ -5,7 +5,7 @@ export default function TodoBoard() {
   const { todos, categories } = useSelector((s) => s.todosInfo);
 
   return (
-    <div className="flex gap-6 px-6 overflow-x-auto pb-30 no-scrollbar overflow-y-hidden max-h-full">
+    <div className="flex gap-6 px-6 pb-5 overflow-x-auto items-start h-(--h) no-scrollbar">
       {categories.map((cat) => (
         <TodoColumn
           key={cat.id}

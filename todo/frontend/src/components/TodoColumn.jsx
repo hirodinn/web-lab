@@ -25,7 +25,7 @@ export default function TodoColumn({ category, todos }) {
 
   return (
     <div
-      className="min-w-90 p-3 rounded-xl overflow-y-scroll no-scrollbar mb-6"
+      className="min-w-90 p-3 rounded-xl max-h-full overflow-y-scroll no-scrollbar box-border"
       style={{ backgroundColor: `${category.color}` }}
     >
       <div className="flex justify-between mb-3">
@@ -44,6 +44,16 @@ export default function TodoColumn({ category, todos }) {
         {result.map((todo) => (
           <TodoCard key={todo.id} todo={todo} color={category.color} />
         ))}
+      </div>
+      <div
+        className=" border-2 border-dashed rounded-xl flex items-center justify-center my-5 py-2 cursor-pointer"
+        style={{
+          borderColor: getDarkerHsl(category.color),
+          color: getDarkerHsl(category.color),
+          font: "bold",
+        }}
+      >
+        Add Todo
       </div>
     </div>
   );

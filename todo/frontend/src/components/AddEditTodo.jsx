@@ -11,7 +11,7 @@ import { useState } from "react";
 const API = "http://localhost:3001/todos";
 const CateAPI = "http://localhost:3001/categories";
 
-export default function AddEditTodo({ edit }) {
+export default function AddEditTodo({ edit, category }) {
   const dispatch = useDispatch();
   const { initialValues, todos, categories } = useSelector((s) => s.todosInfo);
 
@@ -22,9 +22,13 @@ export default function AddEditTodo({ edit }) {
   const submit = async (e) => {
     e.preventDefault();
     const f = { ...form };
-    f.category = f.category.trim();
-    if (!f.category) {
-      f.category = "uncategorized";
+    if (category) {
+      f.category = category;
+    } else {
+      f.category = f.category.trim();
+      if (!f.category) {
+        f.category = "uncategorized";
+      }
     }
     if (!categories.includes(f.category)) {
       const res = await axios.post(CateAPI, {
@@ -77,12 +81,14 @@ export default function AddEditTodo({ edit }) {
           onChange={(e) => setForm({ ...form, date: e.target.value })}
           required
         />
-        <input
-          className="w-full mb-4 border p-2"
-          placeholder="Category"
-          value={form.category}
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
-        />
+        {!category && (
+          <input
+            className="w-full mb-4 border p-2"
+            placeholder="Category"
+            value={form.category}
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+          />
+        )}
 
         <div className="flex justify-end gap-2">
           <button
