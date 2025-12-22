@@ -25,7 +25,7 @@ export default function TodoColumn({ category, todos }) {
 
   return (
     <div
-      className="min-w-90 p-3 rounded-xl overflow-y-scroll no-scrollbar"
+      className="min-w-90 p-3 rounded-xl overflow-y-scroll no-scrollbar mb-6"
       style={{ backgroundColor: `${category.color}` }}
     >
       <div className="flex justify-between mb-3">
@@ -35,7 +35,9 @@ export default function TodoColumn({ category, todos }) {
         >
           {category.name}
         </h3>
-        <h3 onClick={() => setSort(!sort)}>{sort ? "Unsort" : "Sort"}</h3>
+        <h3 className="cursor-pointer" onClick={() => setSort(!sort)}>
+          {sort ? "Unsort" : "Sort"}
+        </h3>
       </div>
 
       <div className="flex flex-col gap-3">

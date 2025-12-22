@@ -13,11 +13,11 @@ export function Theme() {
     <div
       onClick={handleToggle}
       className={`w-16 h-8 rounded-full p-1 flex items-center cursor-pointer transition-colors ${
-        darkMode ? "bg-gray-700" : "bg-yellow-200"
+        darkMode ? "bg-gray-600" : "bg-yellow-200"
       }`}
     >
       <div
-        className={`w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 ${
+        className={`min-w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 ${
           darkMode
             ? "translate-x-8 bg-gray-900 text-white"
             : "translate-x-0 bg-white text-yellow-500"

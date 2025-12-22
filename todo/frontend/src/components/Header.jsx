@@ -1,26 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  makeDark,
-  setAddTodo,
-  setInitialValues,
-} from "../redux/todoInfoAction";
+import { useDispatch } from "react-redux";
+import { Theme } from "./Theme";
+import { setAddTodo, setInitialValues } from "../redux/todoInfoAction";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const dark = useSelector((s) => s.todosInfo.darkMode);
-  console.log(dark);
   return (
     <div className="flex justify-between items-center px-6 py-4">
       <h1 className="text-xl font-bold dark:text-white">Todo Board</h1>
 
       <div className="flex gap-3">
-        <button
-          onClick={() => dispatch(makeDark(!dark))}
-          className="px-3 py-2 rounded bg-gray-200 dark:bg-gray-700"
-        >
-          🌙
-        </button>
-
+        <Theme />
         <button
           onClick={() => {
             dispatch(setInitialValues(null));
