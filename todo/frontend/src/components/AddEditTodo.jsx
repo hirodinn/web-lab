@@ -6,6 +6,7 @@ import {
   setCategories,
   setCurrentCategory,
 } from "../redux/todoInfoAction";
+import { useRef } from "react";
 import axios from "axios";
 import { useState } from "react";
 
@@ -13,6 +14,7 @@ const API = "http://localhost:3001/todos";
 const CateAPI = "http://localhost:3001/categories";
 
 export default function AddEditTodo({ edit }) {
+  const formRef = useRef();
   const dispatch = useDispatch();
   const { initialValues, todos, categories, currentCategory } = useSelector(
     (s) => s.todosInfo
@@ -60,11 +62,23 @@ export default function AddEditTodo({ edit }) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 
+  function handleClick(e) {
+    if (!formRef.current.contains(e.target)) {
+      dispatch(setAddTodo(false));
+      dispatch(setInitialValues(null));
+      dispatch(setCurrentCategory(null));
+    }
+  }
+
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+    <div
+      className="fixed inset-0 bg-black/40 flex items-center justify-center"
+      onClick={handleClick}
+    >
       <form
         onSubmit={submit}
         className="bg-(--background-color) p-6 rounded-xl w-96"
+        ref={formRef}
       >
         <input
           className="w-full mb-2 border p-2"
