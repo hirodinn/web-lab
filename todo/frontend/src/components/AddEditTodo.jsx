@@ -3,15 +3,17 @@ import {
   setAddTodo,
   setTodos,
   setInitialValues,
+  setCategories,
 } from "../redux/todoInfoAction";
 import axios from "axios";
 import { useState } from "react";
 
 const API = "http://localhost:3001/todos";
+const CateAPI = "http://localhost:3001/categories";
 
 export default function AddEditTodo({ edit }) {
   const dispatch = useDispatch();
-  const { initialValues, todos } = useSelector((s) => s.todosInfo);
+  const { initialValues, todos, categories } = useSelector((s) => s.todosInfo);
 
   const [form, setForm] = useState(
     initialValues || { title: "", description: "", date: "", category: "" }
@@ -24,6 +26,13 @@ export default function AddEditTodo({ edit }) {
     if (!f.category) {
       f.category = "uncategorized";
     }
+    if (!categories.includes(f.category)) {
+      const res = await axios.post(CateAPI, {
+        name: f.category,
+        color: getRandomLightColor(),
+      });
+      dispatch(setCategories([...categories, res.data]));
+    }
     if (edit) {
       const res = await axios.put(`${API}/${f.id}`, f);
       dispatch(setTodos(todos.map((t) => (t.id === f.id ? res.data : t))));
@@ -34,6 +43,13 @@ export default function AddEditTodo({ edit }) {
       dispatch(setAddTodo(false));
     }
   };
+
+  function getRandomLightColor() {
+    const hue = Math.floor(Math.random() * 360); // any color hue
+    const saturation = Math.floor(Math.random() * 30) + 70; // 70% - 100% saturation
+    const lightness = Math.floor(Math.random() * 20) + 80; // 80% - 100% lightness for light shades
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  }
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
