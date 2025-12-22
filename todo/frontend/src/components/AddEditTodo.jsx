@@ -4,6 +4,7 @@ import {
   setTodos,
   setInitialValues,
   setCategories,
+  setCurrentCategory,
 } from "../redux/todoInfoAction";
 import axios from "axios";
 import { useState } from "react";
@@ -32,7 +33,8 @@ export default function AddEditTodo({ edit }) {
         f.category = "uncategorized";
       }
     }
-    if (!categories.includes(f.category)) {
+    const include = categories.some((category) => category.name === f.category);
+    if (!currentCategory && !include) {
       const res = await axios.post(CateAPI, {
         name: f.category,
         color: getRandomLightColor(),
@@ -48,6 +50,7 @@ export default function AddEditTodo({ edit }) {
       dispatch(setTodos([...todos, res.data]));
       dispatch(setAddTodo(false));
     }
+    dispatch(setCurrentCategory(null));
   };
 
   function getRandomLightColor() {
@@ -98,6 +101,7 @@ export default function AddEditTodo({ edit }) {
             onClick={() => {
               dispatch(setAddTodo(false));
               dispatch(setInitialValues(null));
+              dispatch(setCurrentCategory(null));
             }}
             className="px-3 py-2 bg-gray-300 rounded"
           >

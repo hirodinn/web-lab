@@ -33,7 +33,7 @@ export default function TodoColumn({ category, todos }) {
       <div className="flex justify-between mb-3">
         <h3
           style={{ color: getDarkerHsl(category.color) }}
-          className="font-semibold"
+          className="font-extrabold text-2xl"
         >
           {category.name}
         </h3>
