@@ -10,13 +10,29 @@ export default function TodoColumn({ category, todos }) {
     return [...todos].sort((a, b) => new Date(a.date) - new Date(b.date));
   }, [todos, sort]);
 
+  function getDarkerHsl(hsl, amount = 30) {
+    // extract numbers from "hsl(h, s%, l%)"
+    const match = hsl.match(/\d+/g);
+    if (!match) return hsl;
+
+    let [h, s, l] = match.map(Number);
+
+    // reduce lightness safely
+    l = Math.max(0, l - amount);
+
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
   return (
     <div
       className="min-w-90 p-3 rounded-xl"
       style={{ backgroundColor: `${category.color}` }}
     >
       <div className="flex justify-between mb-3">
-        <h3 style={{ color: category.color }} className="font-semibold">
+        <h3
+          style={{ color: getDarkerHsl(category.color) }}
+          className="font-semibold"
+        >
           {category.name}
         </h3>
         <h3 onClick={() => setSort(!sort)}>{sort ? "Unsort" : "Sort"}</h3>
