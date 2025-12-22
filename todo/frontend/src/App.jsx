@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-custom transition">
+      <div className="h-screen bg-custom transition box-border overflow-hidden">
         <Header />
         <TodoBoard />
         {addtodo && <AddEditTodo />}

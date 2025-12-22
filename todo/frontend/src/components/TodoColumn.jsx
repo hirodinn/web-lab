@@ -25,7 +25,7 @@ export default function TodoColumn({ category, todos }) {
 
   return (
     <div
-      className="min-w-90 p-3 rounded-xl"
+      className="min-w-90 p-3 rounded-xl overflow-y-scroll no-scrollbar"
       style={{ backgroundColor: `${category.color}` }}
     >
       <div className="flex justify-between mb-3">
