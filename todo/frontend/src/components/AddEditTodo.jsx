@@ -11,9 +11,11 @@ import { useState } from "react";
 const API = "http://localhost:3001/todos";
 const CateAPI = "http://localhost:3001/categories";
 
-export default function AddEditTodo({ edit, category }) {
+export default function AddEditTodo({ edit }) {
   const dispatch = useDispatch();
-  const { initialValues, todos, categories } = useSelector((s) => s.todosInfo);
+  const { initialValues, todos, categories, currentCategory } = useSelector(
+    (s) => s.todosInfo
+  );
 
   const [form, setForm] = useState(
     initialValues || { title: "", description: "", date: "", category: "" }
@@ -22,8 +24,8 @@ export default function AddEditTodo({ edit, category }) {
   const submit = async (e) => {
     e.preventDefault();
     const f = { ...form };
-    if (category) {
-      f.category = category;
+    if (currentCategory) {
+      f.category = currentCategory;
     } else {
       f.category = f.category.trim();
       if (!f.category) {
@@ -81,7 +83,7 @@ export default function AddEditTodo({ edit, category }) {
           onChange={(e) => setForm({ ...form, date: e.target.value })}
           required
         />
-        {!category && (
+        {!currentCategory && (
           <input
             className="w-full mb-4 border p-2"
             placeholder="Category"

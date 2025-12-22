@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentCategory, setAddTodo } from "../redux/todoInfoAction";
 import TodoCard from "./TodoCard";
-import AddEditTodo from "./AddEditTodo";
 
 export default function TodoColumn({ category, todos }) {
   const [sort, setSort] = useState(false);
-
+  const dispatch = useDispatch();
   const result = useMemo(() => {
     if (!sort) return todos;
 
@@ -53,7 +54,10 @@ export default function TodoColumn({ category, todos }) {
           color: getDarkerHsl(category.color),
           font: "bold",
         }}
-        onClick={() => <AddEditTodo category={category.name} />}
+        onClick={() => {
+          dispatch(setCurrentCategory(category.name));
+          dispatch(setAddTodo(true));
+        }}
       >
         Add Todo
       </div>
