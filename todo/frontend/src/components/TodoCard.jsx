@@ -19,11 +19,11 @@ export default function TodoCard({ todo, color }) {
     >
       <div className="absolute top-2 right-2 hidden group-hover:flex gap-2">
         <i
-          className="fa-solid fa-pen text-blue-500 cursor-pointer"
+          className="fas fa-edit text-blue-500 cursor-pointer"
           onClick={() => dispatch(setInitialValues(todo))}
         ></i>
         <i
-          className="fa-solid fa-trash text-red-500 cursor-pointer"
+          className="fas fa-trash text-red-500 cursor-pointer"
           onClick={del}
         ></i>
       </div>

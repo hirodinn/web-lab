@@ -48,7 +48,8 @@ export default function TodoColumn({ category, todos }) {
         ))}
       </div>
       <div
-        className=" border-2 border-dashed rounded-xl flex items-center justify-center my-5 py-2 cursor-pointer"
+        className=" border-2 border-dashed rounded-xl flex items-center justify-center my-5 py-2 cursor-pointer hover:border-solid
+         "
         style={{
           borderColor: getDarkerHsl(category.color),
           color: getDarkerHsl(category.color),
