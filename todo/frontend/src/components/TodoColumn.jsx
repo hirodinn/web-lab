@@ -24,6 +24,7 @@ export default function TodoColumn({ category, todos }) {
 
     return `hsl(${h}, ${s}%, ${l}%)`;
   }
+  if (!todos.length) return <></>;
 
   return (
     <div
