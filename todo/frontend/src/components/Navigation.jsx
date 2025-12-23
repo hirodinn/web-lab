@@ -79,15 +79,16 @@ export function Navigation() {
       <div className="flex items-center gap-3">
         <select
           className="px-3 py-2 rounded-lg border
-                 bg-gray-100 dark:bg-gray-700
-                 text-sm text-gray-700 dark:text-gray-200"
+                 text-sm"
           onChange={(e) => {
             setCategoryValue(e.target.value);
           }}
         >
-          <option value="all">All tasks</option>
+          <option value="all" className="text-black">
+            All tasks
+          </option>
           {cate.map((category, i) => (
-            <option value={category.name} key={i}>
+            <option value={category.name} key={i} className="text-black">
               {category.name}
             </option>
           ))}
