@@ -9,7 +9,7 @@
 
   --text-color: hsl(220, 15%, 15%); /* dark slate for readability */
   --background-color: hsl(50, 30%, 98%); /* off-white */
-  --h: calc(100vh - 72px);
+  --h: calc(100vh - 132px);
 }
 
 /* Dark mode – keep same as before (distinct from random colors) */

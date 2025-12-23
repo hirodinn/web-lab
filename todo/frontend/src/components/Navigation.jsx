@@ -58,9 +58,8 @@ export function Navigation() {
     >
       <form
         className="flex items-center gap-2
-               bg-gray-100 dark:bg-gray-700
                px-3 py-2 rounded-lg
-               w-full max-w-xs"
+               w-full max-w-xs outline"
         onSubmit={loadTodos}
       >
         <i className="fa fa-search text-gray-400 text-sm" />
