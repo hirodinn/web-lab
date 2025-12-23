@@ -5,6 +5,7 @@ import TodoBoard from "./components/TodoBoard";
 import AddEditTodo from "./components/AddEditTodo";
 import Header from "./components/Header";
 import { setTodos, setCategories } from "./redux/todoInfoAction";
+import { Navigation } from "./components/Navigation";
 
 const API_TODOS = "http://localhost:3001/todos";
 const API_CATEGORIES = "http://localhost:3001/categories";
@@ -23,6 +24,7 @@ export default function App() {
     <div className={darkMode ? "dark" : ""}>
       <div className="max-h-screen bg-custom transition box-border overflow-hidden">
         <Header />
+        <Navigation />
         <TodoBoard />
         {addtodo && <AddEditTodo />}
         {initialValues && <AddEditTodo edit />}
