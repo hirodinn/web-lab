@@ -54,7 +54,7 @@ export function Navigation() {
     <div
       className="flex items-center justify-between gap-4
              px-6 py-3 rounded-2xl
-             shadow-sm"
+              mb-1"
     >
       <form
         className="flex items-center gap-2

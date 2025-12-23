@@ -8,7 +8,7 @@ export default function Header() {
     <div className="flex justify-between items-center px-6 py-4">
       <h1 className="text-xl font-bold text-(--text-color)">Todo Board</h1>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 items-center">
         <Theme />
         <button
           onClick={() => {
